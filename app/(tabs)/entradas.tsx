@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { StyleSheet, Alert } from 'react-native';
+import React, { useState } from "react";
+import { StyleSheet, Alert } from "react-native";
 import { Card } from "@/components/ui/card";
 import { Heading } from "@/components/ui/heading";
 import { VStack } from "@/components/ui/vstack";
@@ -7,11 +7,21 @@ import { Text } from "@/components/ui/text";
 import { Box } from "@/components/ui/box";
 import { Input, InputField } from "@/components/ui/input";
 import { Button, ButtonText } from "@/components/ui/button";
-import { Select, SelectDragIndicator, SelectDragIndicatorWrapper, SelectContent, SelectBackdrop, SelectIcon, SelectInput, SelectItem, SelectPortal, SelectTrigger } from "@/components/ui/select";
-import { FontAwesome } from '@expo/vector-icons';
-import ParallaxScrollView from '@/components/ParallaxScrollView';
-import { mockProducts } from '@/data/mockData';
-import { ChevronDownIcon } from '@/components/ui/icon';
+import {
+  Select,
+  SelectDragIndicator,
+  SelectDragIndicatorWrapper,
+  SelectContent,
+  SelectBackdrop,
+  SelectIcon,
+  SelectInput,
+  SelectItem,
+  SelectPortal,
+  SelectTrigger,
+} from "@/components/ui/select";
+import { FontAwesome } from "@expo/vector-icons";
+import ParallaxScrollView from "@/components/ParallaxScrollView";
+import { mockProducts } from "@/data/mockData";
 
 export default function EntradasScreen() {
   const [selectedProduct, setSelectedProduct] = useState("");
@@ -26,12 +36,12 @@ export default function EntradasScreen() {
         Alert.alert("Erro", "Preencha todos os campos");
         return;
       }
-      
+
       Alert.alert(
-        "Sucesso", 
-        `Novo produto adicionado: ${newProductName}\nPreço: R$ ${parseFloat(price).toFixed(2).replace('.', ',')}\nQuantidade: ${quantity}`
+        "Sucesso",
+        `Novo produto adicionado: ${newProductName}\nPreço: R$ ${parseFloat(price).toFixed(2).replace(".", ",")}\nQuantidade: ${quantity}`
       );
-      
+
       setNewProductName("");
       setPrice("");
       setQuantity("");
@@ -40,15 +50,15 @@ export default function EntradasScreen() {
         Alert.alert("Erro", "Selecione um produto e informe a quantidade");
         return;
       }
-      
-      const product = mockProducts.find(p => p.id === selectedProduct);
+
+      const product = mockProducts.find((p) => p.id === selectedProduct);
       if (product) {
         Alert.alert(
-          "Sucesso", 
+          "Sucesso",
           `Estoque atualizado: ${product.nome}\nQuantidade adicionada: ${quantity}`
         );
       }
-      
+
       setSelectedProduct("");
       setQuantity("");
     }
@@ -56,10 +66,16 @@ export default function EntradasScreen() {
 
   return (
     <ParallaxScrollView
-      headerBackgroundColor={{ light: '#4A6572', dark: '#1D3D47' }}
+      headerBackgroundColor={{ light: "#4A6572", dark: "#1D3D47" }}
       headerImage={
-        <FontAwesome name="truck" size={80} color="#ffffff" style={styles.headerIcon} />
-      }>
+        <FontAwesome
+          name="truck"
+          size={80}
+          color="#ffffff"
+          style={styles.headerIcon}
+        />
+      }
+    >
       <Box className="items-center mb-5 mt-2">
         <Heading size="xl">Entradas de Estoque</Heading>
       </Box>
@@ -74,17 +90,13 @@ export default function EntradasScreen() {
                 onPress={() => setIsNewProduct(false)}
                 className="mr-2"
               >
-                <ButtonText>
-                    Produto Existente
-                </ButtonText>
+                <ButtonText>Produto Existente</ButtonText>
               </Button>
-              <Button 
+              <Button
                 variant={isNewProduct ? "solid" : "outline"}
                 onPress={() => setIsNewProduct(true)}
               >
-                <ButtonText>
-                    Novo Produto
-                </ButtonText>
+                <ButtonText>Novo Produto</ButtonText>
               </Button>
             </Box>
           </Box>
@@ -94,33 +106,33 @@ export default function EntradasScreen() {
               <Box>
                 <Text className="mb-1">Nome do Produto</Text>
                 <Input>
-                    <InputField
-                        value={newProductName}
-                        onChangeText={setNewProductName}
-                        placeholder="Digite o nome do produto"
-                    />
+                  <InputField
+                    value={newProductName}
+                    onChangeText={setNewProductName}
+                    placeholder="Digite o nome do produto"
+                  />
                 </Input>
               </Box>
               <Box>
                 <Text className="mb-1">Preço (R$)</Text>
                 <Input>
-                    <InputField
-                        value={price}
-                        onChangeText={setPrice}
-                        placeholder="0,00"
-                        keyboardType="numeric"
-                    />
+                  <InputField
+                    value={price}
+                    onChangeText={setPrice}
+                    placeholder="0,00"
+                    keyboardType="numeric"
+                  />
                 </Input>
               </Box>
               <Box>
                 <Text className="mb-1">Quantidade</Text>
                 <Input>
-                    <InputField
-                        value={quantity}
-                        onChangeText={setQuantity}
-                        placeholder="0"
-                        keyboardType="numeric"
-                    />
+                  <InputField
+                    value={quantity}
+                    onChangeText={setQuantity}
+                    placeholder="0"
+                    keyboardType="numeric"
+                  />
                 </Input>
               </Box>
             </VStack>
@@ -128,10 +140,21 @@ export default function EntradasScreen() {
             <VStack space="md">
               <Box>
                 <Text className="mb-1">Selecione o Produto</Text>
-                <Select onValueChange={setSelectedProduct} selectedValue={selectedProduct}>
-                  <SelectTrigger variant="outline" size="md">
+                <Select
+                  onValueChange={setSelectedProduct}
+                  selectedValue={selectedProduct}
+                >
+                  <SelectTrigger
+                    variant="outline"
+                    size="md"
+                    style={styles.selectTrigger}
+                  >
                     <SelectInput placeholder="Selecione um produto" />
-                    <SelectIcon className="mr-3" as={ChevronDownIcon} />
+                    <SelectIcon
+                      style={styles.selectIcon}
+                      as={FontAwesome}
+                      name="chevron-down"
+                    />
                   </SelectTrigger>
                   <SelectPortal>
                     <SelectBackdrop />
@@ -139,8 +162,12 @@ export default function EntradasScreen() {
                       <SelectDragIndicatorWrapper>
                         <SelectDragIndicator />
                       </SelectDragIndicatorWrapper>
-                      {mockProducts.map(product => (
-                        <SelectItem key={product.id} label={product.nome} value={product.id} />
+                      {mockProducts.map((product) => (
+                        <SelectItem
+                          key={product.id}
+                          label={product.nome}
+                          value={product.id}
+                        />
                       ))}
                     </SelectContent>
                   </SelectPortal>
@@ -149,12 +176,12 @@ export default function EntradasScreen() {
               <Box>
                 <Text className="mb-1">Quantidade a Adicionar</Text>
                 <Input>
-                    <InputField
-                        value={quantity}
-                        onChangeText={setQuantity}
-                        placeholder="0"
-                        keyboardType="numeric"
-                    />
+                  <InputField
+                    value={quantity}
+                    onChangeText={setQuantity}
+                    placeholder="0"
+                    keyboardType="numeric"
+                  />
                 </Input>
               </Box>
             </VStack>
@@ -162,7 +189,7 @@ export default function EntradasScreen() {
 
           <Button onPress={handleSubmit} className="mt-4">
             <ButtonText>
-                {isNewProduct ? "Cadastrar Produto" : "Adicionar ao Estoque"}
+              {isNewProduct ? "Cadastrar Produto" : "Adicionar ao Estoque"}
             </ButtonText>
           </Button>
         </VStack>
@@ -196,8 +223,20 @@ export default function EntradasScreen() {
 
 const styles = StyleSheet.create({
   headerIcon: {
-    position: 'absolute',
+    position: "absolute",
     bottom: 20,
     right: 20,
+  },
+  selectTrigger: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    paddingRight: 10,
+  },
+  selectIcon: {
+    position: "absolute",
+    right: 10,
+    fontSize: 16,
+    color: "#666",
   },
 });
