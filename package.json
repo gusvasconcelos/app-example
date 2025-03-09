@@ -17,11 +17,16 @@
   "dependencies": {
     "@expo/html-elements": "^0.4.2",
     "@expo/vector-icons": "^14.0.2",
+    "@gluestack-ui/actionsheet": "^0.2.51",
+    "@gluestack-ui/button": "^1.0.13",
     "@gluestack-ui/icon": "^0.1.25",
+    "@gluestack-ui/input": "^0.1.37",
     "@gluestack-ui/link": "^0.1.28",
     "@gluestack-ui/nativewind-utils": "^1.0.26",
     "@gluestack-ui/overlay": "^0.1.21",
+    "@gluestack-ui/select": "^0.1.31",
     "@gluestack-ui/toast": "^1.0.9",
+    "@legendapp/motion": "^2.4.0",
     "@react-navigation/bottom-tabs": "^7.2.0",
     "@react-navigation/native": "^7.0.14",
     "babel-plugin-module-resolver": "^5.0.2",
@@ -62,5 +67,8 @@
     "react-test-renderer": "18.3.1",
     "typescript": "^5.3.3"
   },
-  "private": true
+  "private": true,
+  "overrides": {
+    "@react-aria/utils": "3.27.0"
+  }
 }

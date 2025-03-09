@@ -10,14 +10,6 @@ import { FontAwesome } from '@expo/vector-icons';
 
 export default function TabLayout() {
   const colorScheme = useColorScheme();
-
-  const globalAny: any = global;
-  if (typeof globalAny.FinalizationRegistry === 'undefined') {
-    globalAny.FinalizationRegistry = class {
-      register() {}
-      unregister() {}
-    };
-  }
   
   return (
     <Tabs
@@ -46,6 +38,14 @@ export default function TabLayout() {
         options={{
           title: 'Produtos',
           tabBarIcon: ({ color }) => <FontAwesome name="list" size={28} color={color} />,
+        }}
+      />
+      
+      <Tabs.Screen
+        name="entradas"
+        options={{
+          title: 'Entradas',
+          tabBarIcon: ({ color }) => <FontAwesome name="truck" size={28} color={color} />,
         }}
       />
     </Tabs>
