@@ -1,32 +1,41 @@
-import { Link, Stack } from 'expo-router';
+import React from 'react';
+import { Stack } from 'expo-router';
 import { StyleSheet } from 'react-native';
-
-import { ThemedText } from '@/components/ThemedText';
-import { ThemedView } from '@/components/ThemedView';
+import { Box } from "@/components/ui/box";
+import { VStack } from "@/components/ui/vstack";
+import { Heading } from "@/components/ui/heading";
+import { Text } from "@/components/ui/text";
+import { AlertCircleIcon, Icon } from "@/components/ui/icon";
 
 export default function NotFoundScreen() {
   return (
     <>
-      <Stack.Screen options={{ title: 'Oops!' }} />
-      <ThemedView style={styles.container}>
-        <ThemedText type="title">This screen doesn't exist.</ThemedText>
-        <Link href="/" style={styles.link}>
-          <ThemedText type="link">Go to home screen!</ThemedText>
-        </Link>
-      </ThemedView>
+      <Stack.Screen options={{ title: 'Página não encontrada' }} />
+      <Box 
+        className="flex-1 items-center justify-center p-6"
+        style={styles.container}
+      >
+        <VStack space="xl" className="items-center">
+          <Icon
+            as={AlertCircleIcon}
+            className='text-error-500'
+          />
+          
+          <Heading size="2xl" className="text-center">
+            Ops! Página não encontrada
+          </Heading>
+          
+          <Text className="text-center text-lg mb-6">
+            A página que você está procurando não existe ou foi movida.
+          </Text>
+        </VStack>
+      </Box>
     </>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: 20,
-  },
-  link: {
-    marginTop: 15,
-    paddingVertical: 15,
-  },
+    backgroundColor: 'rgba(0, 0, 0, 0.02)'
+  }
 });
