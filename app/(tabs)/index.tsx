@@ -9,8 +9,12 @@ import { StyleSheet } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 import ParallaxScrollView from '@/components/ParallaxScrollView';
 import { Box } from "@/components/ui/box"
+import { useRouter } from 'expo-router';
+import { Pressable } from 'react-native';
 
 export default function HomeScreen() {
+  const router = useRouter();
+
   return (
     <ParallaxScrollView
       headerBackgroundColor={{ light: '#4A6572', dark: '#1D3D47' }}
@@ -23,83 +27,91 @@ export default function HomeScreen() {
 
       <HStack className="flex-wrap justify-between px-3">
         <Card className="p-5 rounded-lg w-[48%] mb-4">
-          <Box className="items-center justify-center h-20 w-20 rounded-full bg-primary-0 mb-4 self-center">
-            <FontAwesome name="list" size={30} color="#4A6572" />
-          </Box>
+          <Pressable onPress={() => router.push('/(tabs)/produtos')}>
+            <Box className="items-center justify-center h-20 w-20 rounded-full bg-primary-0 mb-4 self-center">
+              <FontAwesome name="list" size={30} color="#4A6572" />
+            </Box>
+          </Pressable>
           <Heading size="md" className="mb-2 text-center">
             Produtos
           </Heading>
           <Text size="sm" className="text-center mb-4">
             Gerencie todos os produtos do seu inventário
           </Text>
-          <Link href="/produtos">
+          <Pressable onPress={() => router.push('/(tabs)/produtos')}>
             <HStack className="items-center justify-center">
-              <LinkText size="sm" className="font-semibold text-primary-600 no-underline">
+              <Text size="sm" className="font-semibold text-primary-600 no-underline">
                 Acessar
-              </LinkText>
+              </Text>
               <Icon as={FontAwesome} name="arrow-right" size="sm" className="text-primary-600 ml-1" />
             </HStack>
-          </Link>
+          </Pressable>
         </Card>
 
         <Card className="p-5 rounded-lg w-[48%] mb-4">
-          <Box className="items-center justify-center h-20 w-20 rounded-full bg-success-100 mb-4 self-center">
-            <FontAwesome name="truck" size={30} color="#2E7D32" />
-          </Box>
+          <Pressable onPress={() => router.push('/(tabs)/entradas')}>
+            <Box className="items-center justify-center h-20 w-20 rounded-full bg-success-100 mb-4 self-center">
+              <FontAwesome name="truck" size={30} color="#2E7D32" />
+            </Box>
+          </Pressable>
           <Heading size="md" className="mb-2 text-center">
             Entradas
           </Heading>
           <Text size="sm" className="text-center mb-4">
             Registre novas entradas de mercadorias
           </Text>
-          <Link href="/entradas">
+          <Pressable onPress={() => router.push('/(tabs)/entradas')}>
             <HStack className="items-center justify-center">
-              <LinkText size="sm" className="font-semibold text-success-600 no-underline">
+              <Text size="sm" className="font-semibold text-primary-600 no-underline">
                 Acessar
-              </LinkText>
-              <Icon as={FontAwesome} name="arrow-right" size="sm" className="text-success-600 ml-1" />
+              </Text>
+              <Icon as={FontAwesome} name="arrow-right" size="sm" className="text-primary-600 ml-1" />
             </HStack>
-          </Link>
+          </Pressable>
         </Card>
 
         <Card className="p-5 rounded-lg w-[48%] mb-4">
-          <Box className="items-center justify-center h-20 w-20 rounded-full bg-warning-100 mb-4 self-center">
-            <FontAwesome name="shopping-cart" size={30} color="#ED6C02" />
-          </Box>
+          <Pressable onPress={() => router.push('/(tabs)/saidas')}>
+            <Box className="items-center justify-center h-20 w-20 rounded-full bg-warning-100 mb-4 self-center">
+              <FontAwesome name="shopping-cart" size={30} color="#ED6C02" />
+            </Box>
+          </Pressable>
           <Heading size="md" className="mb-2 text-center">
             Saídas
           </Heading>
           <Text size="sm" className="text-center mb-4">
             Controle as saídas de produtos do estoque
           </Text>
-          <Link href="/saidas">
+          <Pressable onPress={() => router.push('/(tabs)/saidas')}>
             <HStack className="items-center justify-center">
-              <LinkText size="sm" className="font-semibold text-warning-600 no-underline">
+              <Text size="sm" className="font-semibold text-primary-600 no-underline">
                 Acessar
-              </LinkText>
-              <Icon as={FontAwesome} name="arrow-right" size="sm" className="text-warning-600 ml-1" />
+              </Text>
+              <Icon as={FontAwesome} name="arrow-right" size="sm" className="text-primary-600 ml-1" />
             </HStack>
-          </Link>
+          </Pressable>
         </Card>
 
         <Card className="p-5 rounded-lg w-[48%] mb-4">
-          <Box className="items-center justify-center h-20 w-20 rounded-full bg-info-100 mb-4 self-center">
-            <FontAwesome name="bar-chart" size={30} color="#0288D1" />
-          </Box>
+          <Pressable onPress={() => router.push('/(tabs)/relatorios')}>
+            <Box className="items-center justify-center h-20 w-20 rounded-full bg-info-100 mb-4 self-center">
+              <FontAwesome name="bar-chart" size={30} color="#0288D1" />
+            </Box>
+          </Pressable>
           <Heading size="md" className="mb-2 text-center">
             Relatórios
           </Heading>
           <Text size="sm" className="text-center mb-4">
             Visualize relatórios e estatísticas
           </Text>
-          <Link href="/relatorios">
+          <Pressable onPress={() => router.push('/(tabs)/relatorios')}>
             <HStack className="items-center justify-center">
-              <LinkText size="sm" className="font-semibold text-info-600 no-underline">
+              <Text size="sm" className="font-semibold text-primary-600 no-underline">
                 Acessar
-              </LinkText>
-              <Icon as={FontAwesome} name="arrow-right" size="sm" className="text-info-600 ml-1" />
+              </Text>
+              <Icon as={FontAwesome} name="arrow-right" size="sm" className="text-primary-600 ml-1" />
             </HStack>
-          </Link>
+          </Pressable>
         </Card>
       </HStack>
 
@@ -110,15 +122,15 @@ export default function HomeScreen() {
         <VStack space="md">
           <HStack className="justify-between py-2 border-b border-gray-200">
             <Text>Total de Produtos:</Text>
-            <Text className="font-semibold">247</Text>
+            <Text className="font-semibold">10</Text>
           </HStack>
           <HStack className="justify-between py-2 border-b border-gray-200">
             <Text>Produtos com Estoque Baixo:</Text>
-            <Text className="font-semibold text-error-600">15</Text>
+            <Text className="font-semibold text-error-600">2</Text>
           </HStack>
           <HStack className="justify-between py-2">
             <Text>Movimentações Hoje:</Text>
-            <Text className="font-semibold">32</Text>
+            <Text className="font-semibold">5</Text>
           </HStack>
         </VStack>
       </Card>
