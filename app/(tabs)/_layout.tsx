@@ -65,6 +65,16 @@ export default function TabLayout() {
           ),
         }}
       />
+
+      <Tabs.Screen
+        name="relatorios"
+        options={{
+          title: "Relatórios",
+          tabBarIcon: ({ color }) => (
+            <FontAwesome name="bar-chart" size={28} color={color} />
+          ),
+        }}
+      />
     </Tabs>
   );
 }
