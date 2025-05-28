@@ -5,15 +5,39 @@ import { VStack } from "@/components/ui/vstack";
 import { Link, LinkText } from "@/components/ui/link";
 import { Text } from "@/components/ui/text";
 import { Icon } from "@/components/ui/icon";
-import { StyleSheet } from "react-native";
+import { StyleSheet, Alert } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
 import ParallaxScrollView from "@/components/ParallaxScrollView";
 import { Box } from "@/components/ui/box";
 import { useRouter } from "expo-router";
 import { Pressable } from "react-native";
+import { useAuth } from "@/contexts/AuthContext";
+import { Button, ButtonText } from "@/components/ui/button";
 
 export default function HomeScreen() {
   const router = useRouter();
+  const { user, logout } = useAuth();
+
+  const handleLogout = () => {
+    Alert.alert(
+      'Sair',
+      'Tem certeza que deseja sair?',
+      [
+        {
+          text: 'Cancelar',
+          style: 'cancel',
+        },
+        {
+          text: 'Sair',
+          style: 'destructive',
+          onPress: async () => {
+            await logout();
+            router.replace('/auth/login');
+          },
+        },
+      ]
+    );
+  };
 
   return (
     <ParallaxScrollView
@@ -29,6 +53,11 @@ export default function HomeScreen() {
     >
       <Box className="items-center mb-5 mt-2">
         <Heading size="xl">InovaStock</Heading>
+        {user && (
+          <Text className="text-center text-gray-600 mt-2">
+            Bem-vindo, {user.name}!
+          </Text>
+        )}
       </Box>
 
       <HStack className="flex-wrap justify-between px-3">
@@ -172,14 +201,20 @@ export default function HomeScreen() {
           </HStack>
         </VStack>
       </Card>
+
+      <Card className="p-5 mx-3 mb-5">
+        <Button onPress={handleLogout} variant="outline">
+          <ButtonText>Sair da Conta</ButtonText>
+        </Button>
+      </Card>
     </ParallaxScrollView>
   );
 }
 
 const styles = StyleSheet.create({
   stockIcon: {
-    position: "absolute",
-    bottom: 20,
-    right: 20,
+    position: 'absolute',
+    bottom: 40,
+    right: 30,
   },
 });
